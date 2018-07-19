@@ -8,5 +8,6 @@ namespace TBS_Game.GameItems.UnitsStacks
 {
     class ArchersStack
     {
+        //
     }
 }
