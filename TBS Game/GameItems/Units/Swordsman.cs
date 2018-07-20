@@ -9,7 +9,7 @@ namespace TBS_Game.GameItems.Units
     public class Swordsman : Unit
     {
         protected Type  unitType = Type.Swordsman;
-
+        // а может характеристики сделать статикой ( все равно нада только CurrentTotalHP)
         public Swordsman()
         {
             this.HitPoints = 25;

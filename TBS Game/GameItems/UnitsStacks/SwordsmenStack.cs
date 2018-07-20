@@ -8,6 +8,7 @@ using TBS_Game.GameItems.Units;
 
 namespace TBS_Game.GameItems.UnitsStacks
 {
+    // при сохранении/ загрузке из каждого стэка берем только два числа :  CurrentTotalHP и 
     public class SwordsmenStack : ICommonStack
     {
         protected int unitCount = Helpers.RandomizeMethods.GetRandomStackSize();
@@ -53,6 +54,18 @@ namespace TBS_Game.GameItems.UnitsStacks
                 SwrdStack.Add(new Swordsman());
             }
         }
+        public SwordsmenStack(int TotalHP, bool IfGameContinue)
+        {
+            //   бля , нада эти 25 как-то правильно вызвать
+            //   наверное в классах Unit-ов  параметры сделаю статикой
+            unitCount = (TotalHP % 25 > 0) ? TotalHP % 25 + 1 : TotalHP % 25;   
+            for (int i = 0; i < unitCount - 1; i++)
+            {
+                SwrdStack.Add(new Swordsman());
+            }
+        }
+
+
         //         конец блока инициализации
 
         public int GetRandomTotalDamage()
@@ -77,37 +90,26 @@ namespace TBS_Game.GameItems.UnitsStacks
             return Helpers.RandomizeMethods.GetRandomDamage2(this, SwrdStack.Count);
         }
 
-        public List<Swordsman> SubtractionHP(int damage)
+        public void SubtractionHP(int damage)
         {
-            var tempCurrStack = this.SwrdStack;
             var tempCurrStackSize = this.SwrdStack.Count;
-            var injured = 0;
+            var injuredUnit = 0;
 
             CurrentTotalHP = (CurrentTotalHP - damage) > 0 ? CurrentTotalHP - damage : 0;
 
             tempCurrStackSize = CurrentTotalHP / this.SwrdStack[0].HitPoints;
-            injured = CurrentTotalHP % this.SwrdStack[0].HitPoints;
+            injuredUnit = CurrentTotalHP % this.SwrdStack[0].HitPoints;
 
-            tempCurrStackSize = (injured > 0) ? +1 : tempCurrStackSize;
-            int StackSubtraction = this.SwrdStack.Count - tempCurrStackSize;
-            tempCurrStack.RemoveRange(this.SwrdStack.Count - 1 - StackSubtraction, StackSubtraction);
-
- 
-
-            //tempSwrdStack = this.SwrdStack.re
-
-
-
-            //      SubtractionHP  =>    totalHP - rnd damageP  = mod >0 ? (div + 1 )?( div )
-
-            return this.SwrdStack;
+            tempCurrStackSize = (injuredUnit > 0) ? +1 : tempCurrStackSize;
+            int DeadUnitsCount = this.SwrdStack.Count - tempCurrStackSize;
+            this.SwrdStack.RemoveRange(this.SwrdStack.Count - 1 - DeadUnitsCount, DeadUnitsCount);             
         }
 
         //  методы шо нада написать: 
-        //  GetRandomTotalDamage   -  расчитать урон стэка
+        //  +(сделал) GetRandomTotalDamage   -  расчитать урон стэка
         //  AttackTo  - выбор кого атаковать    , хотя хз может его кинуть в class Player
-        //  MissTurn - пропуск хода         -  тож к Player
-        //  SubtractionHP  - притом что этот метод надо сделать умным , так чтобы если урон вычитался сразу с раненых солдат
+        //  MissTurn - пропуск хода            -  тож к Player
+        //  +(сделал) SubtractionHP  - притом что этот метод надо сделать умным , так чтобы если урон вычитался сразу с раненых солдат
         //  бля а как очередь ходов реализовать . ааааааааааа?
 
     }
