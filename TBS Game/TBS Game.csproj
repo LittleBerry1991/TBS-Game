@@ -63,9 +63,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GameItems\Game.cs" />
+    <Compile Include="GameItems\Helpers\RandomizeMethods.cs" />
     <Compile Include="GameItems\Player.cs" />
     <Compile Include="GameItems\UnitsStacks\ArchersStack.cs" />
-    <Compile Include="GameItems\UnitsStacks\CommonStack.cs" />
+    <Compile Include="GameItems\Units\TypeEnum.cs" />
+    <Compile Include="GameItems\UnitsStacks\ICommonStack.cs" />
     <Compile Include="GameItems\UnitsStacks\PeasantsStack.cs" />
     <Compile Include="GameItems\UnitsStacks\SwordsmenStack.cs" />
     <Compile Include="GameItems\Units\Archer.cs" />

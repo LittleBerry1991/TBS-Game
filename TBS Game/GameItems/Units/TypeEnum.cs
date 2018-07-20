@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TBS_Game.GameItems.UnitsStacks
+namespace TBS_Game.GameItems.Units
 {
-    class CommonStack
+    public  enum Type
     {
+        Swordsman,
+        Archer,
+        Peasant
     }
 }

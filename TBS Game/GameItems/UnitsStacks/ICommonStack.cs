@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace TBS_Game.GameItems.UnitsStacks
 {
-    class ArchersStack
+    public interface ICommonStack
     {
-        
+        int minD { get; set; }
+        int maxD { get; set; }
     }
 }

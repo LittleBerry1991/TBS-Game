@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace TBS_Game.GameItems.Units
 {
-    class Peasant
+    public class Peasant : Unit
     {
+        protected Type unitType = Type.Peasant;
+
+        public Peasant()
+        {
+            this.HitPoints = 15;
+            this.DamagePoints.MinDamage = 2;
+            this.DamagePoints.MaxDamage = 4;
+            this.Speed = 5;
+        }
     }
 }

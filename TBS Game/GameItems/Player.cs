@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TBS_Game.GameItems
 {
-    class Player
+    public class Player
     {
+        bool IsTurn = false;
     }
 }
