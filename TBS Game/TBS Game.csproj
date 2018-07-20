@@ -73,7 +73,7 @@
     <Compile Include="GameItems\Units\Archer.cs" />
     <Compile Include="GameItems\Units\Peasant.cs" />
     <Compile Include="GameItems\Units\Swordsman.cs" />
-    <Compile Include="GameItems\Units\Unit.cs" />
+    <Compile Include="GameItems\Units\IUnit.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

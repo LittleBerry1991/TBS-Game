@@ -6,16 +6,35 @@ using System.Threading.Tasks;
 
 namespace TBS_Game.GameItems.Units
 {
-    public class Swordsman : Unit
+    public class Swordsman : IUnit
     {
-        protected Type  unitType = Type.Swordsman;
-        // а может характеристики сделать статикой ( все равно нада только CurrentTotalHP)
-        public Swordsman()
+        protected Type unitType = Type.Swordsman;
+        public static int HitPoints = 25;
+        public int _HitPoints
         {
-            this.HitPoints = 25;
-            this.DamagePoints.MinDamage = 2;
-            this.DamagePoints.MaxDamage = 3;
-            this.Speed = 3;
+            get { return HitPoints; }
+            set { _HitPoints = HitPoints; }
+        }
+
+        public static int Speed = 3;
+        public int _Speed
+        {
+            get { return Speed; }
+            set { _Speed = Speed; }
+        }
+
+        public static int MinDamage = 2;
+        public int _MinDamage
+        {
+            get { return MinDamage; }
+            set { _MinDamage = MinDamage; }
+        }
+
+        public static int MaxDamage = 2;
+        public int _MaxDamage
+        {
+            get { return MaxDamage; }
+            set { _MaxDamage = MaxDamage; }
         }
     }
 }

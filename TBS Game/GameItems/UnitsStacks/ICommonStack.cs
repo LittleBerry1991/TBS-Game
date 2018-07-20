@@ -8,7 +8,7 @@ namespace TBS_Game.GameItems.UnitsStacks
 {
     public interface ICommonStack
     {
-        int minD { get; set; }
-        int maxD { get; set; }
+        //int minD { get; set; }
+        //int maxD { get; set; }
     }
 }

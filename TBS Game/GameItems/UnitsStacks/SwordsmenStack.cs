@@ -11,31 +11,14 @@ namespace TBS_Game.GameItems.UnitsStacks
     // при сохранении/ загрузке из каждого стэка берем только два числа :  CurrentTotalHP и 
     public class SwordsmenStack : ICommonStack
     {
-        protected int unitCount = Helpers.RandomizeMethods.GetRandomStackSize();
+        protected int unitCount = (IsStartNewGame)? Helpers.RandomizeMethods.GetRandomStackSize(): 0;
         protected List<Swordsman> SwrdStack = new List<Swordsman>();
         protected int CurrentTotalHP;
-
-
+        
         bool IsStackDead = false;   //  закрыть ли для текущей игры текущий стек
         bool IsTurnStack = false;   //  порядок хода в границах одного игрока  между стэками отрядов
+        static bool  IsStartNewGame = false;        //   нада поркинуть её в player или game
 
-
-        public int minD
-        {
-            get
-            { return 2; }
-            set
-            { minD = 2; }
-        }
-        public int maxD
-        {
-            get
-            { return 3; }
-            set
-            { maxD = 3; }
-        }
-
-        // может это свойство нах. не нада?!   //  уже нада))))
         public int UnitsCount
         {
             get
@@ -43,7 +26,7 @@ namespace TBS_Game.GameItems.UnitsStacks
             set
             {
                 UnitsCount = unitCount;
-                CurrentTotalHP = unitCount * this.SwrdStack[0].HitPoints;  // хотя хз решение
+                CurrentTotalHP = unitCount * Swordsman.HitPoints;  // вот так вот
             }
         }
 
@@ -56,16 +39,12 @@ namespace TBS_Game.GameItems.UnitsStacks
         }
         public SwordsmenStack(int TotalHP, bool IfGameContinue)
         {
-            //   бля , нада эти 25 как-то правильно вызвать
-            //   наверное в классах Unit-ов  параметры сделаю статикой
-            unitCount = (TotalHP % 25 > 0) ? TotalHP % 25 + 1 : TotalHP % 25;   
+            unitCount = (TotalHP % Swordsman.HitPoints > 0) ? TotalHP % Swordsman.HitPoints + 1 : TotalHP % Swordsman.HitPoints;   
             for (int i = 0; i < unitCount - 1; i++)
             {
                 SwrdStack.Add(new Swordsman());
             }
         }
-
-
         //         конец блока инициализации
 
         public int GetRandomTotalDamage()
@@ -75,8 +54,8 @@ namespace TBS_Game.GameItems.UnitsStacks
 
             if (SwrdStack != null || SwrdStack.Count > 0)
             {
-                minDmg = SwrdStack[0].DamagePoints.MinDamage * this.SwrdStack.Count;
-                maxDmg = SwrdStack[0].DamagePoints.MaxDamage * this.SwrdStack.Count;
+                minDmg = Swordsman.MinDamage * this.SwrdStack.Count;
+                maxDmg = Swordsman.MaxDamage * this.SwrdStack.Count;
 
                 return Helpers.RandomizeMethods.GetRandomDamage(minDmg, maxDmg);
             }
@@ -84,10 +63,9 @@ namespace TBS_Game.GameItems.UnitsStacks
                 return 0;
         }
 
-        // свойства minD и maxD сделаны только для этого
         public int GetRandomTotalDamage2()
         {
-            return Helpers.RandomizeMethods.GetRandomDamage2(this, SwrdStack.Count);
+            return Helpers.RandomizeMethods.GetRandomDamage2(SwrdStack[0] , SwrdStack.Count);
         }
 
         public void SubtractionHP(int damage)
@@ -97,8 +75,8 @@ namespace TBS_Game.GameItems.UnitsStacks
 
             CurrentTotalHP = (CurrentTotalHP - damage) > 0 ? CurrentTotalHP - damage : 0;
 
-            tempCurrStackSize = CurrentTotalHP / this.SwrdStack[0].HitPoints;
-            injuredUnit = CurrentTotalHP % this.SwrdStack[0].HitPoints;
+            tempCurrStackSize = CurrentTotalHP / Swordsman.HitPoints;
+            injuredUnit = CurrentTotalHP % Swordsman.HitPoints;
 
             tempCurrStackSize = (injuredUnit > 0) ? +1 : tempCurrStackSize;
             int DeadUnitsCount = this.SwrdStack.Count - tempCurrStackSize;

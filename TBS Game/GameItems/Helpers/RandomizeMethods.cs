@@ -28,14 +28,14 @@ namespace TBS_Game.GameItems.Helpers
         }
 
         // типа обощеный метод для разных стэков
-        public static int GetRandomDamage2(ICommonStack s, int unitCount)
+        public static int GetRandomDamage2(IUnit unit, int unitCount)
         {
-            return rnd.Next(s.minD * unitCount, s.minD * unitCount + 1);
+            return rnd.Next(unit._MinDamage* unitCount, unit._MaxDamage * unitCount + 1);
         }
         // version # 3 
-        public static int GetRandomDamage2(List<Unit> UnitStack)
+        public static int GetRandomDamage2(List<IUnit> UnitStack)
         {
-            return rnd.Next(UnitStack[0].minD * UnitStack.Count, UnitStack[0].minD * UnitStack.Count + 1);
+            return rnd.Next(UnitStack[0]._MinDamage * UnitStack.Count, UnitStack[0]._MaxDamage * UnitStack.Count + 1);
         }
     }
 }

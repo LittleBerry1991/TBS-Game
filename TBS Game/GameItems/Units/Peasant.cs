@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TBS_Game.GameItems.Units
 {
-    public class Peasant : Unit
+    public class Peasant : IUnit
     {
         protected Type unitType = Type.Peasant;
 
