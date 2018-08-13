@@ -80,6 +80,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Moduls\GameDrive\GameDrive.cs" />
+    <Compile Include="Moduls\GameDrive\UnitsInit.cs" />
+    <Compile Include="Moduls\GameItems\Player.cs" />
+    <Compile Include="Moduls\GameItems\UnitsStack.cs" />
+    <Compile Include="Moduls\GameMenu\ExitGame.cs" />
+    <Compile Include="Moduls\GameMenu\LoadGame.cs" />
+    <Compile Include="Moduls\GameMenu\StartGame.cs" />
+    <Compile Include="Moduls\GameMode\ContinueGame.cs" />
+    <Compile Include="Moduls\GameMode\NewGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -105,5 +114,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
